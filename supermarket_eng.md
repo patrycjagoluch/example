@@ -1,21 +1,21 @@
-## Spis treści
+## Table of contents
 
- - [Informacje o projekcie](#informacje-o-projekcie)
- - [Czyszczenie danych](#czyszczenie-danych)
- - [Wizualizacja danych](#wizualizacja-danych)
+ - [Project information](#project-information)
+ - [Data cleaning](#data-cleaning)
+ - [Data visualization](#data-visualization)
  - [Dashboard](#dashboard)
- - [Rekomendacje](#rekomendacje)
+ - [Recommendations](#recommendations)
 
-# Informacje o projekcie
-Analiza jest wykonana na podstawie danych sprzedażowych supermarketu z okresu trzech miesięcy (styczeń-marzec) w 2019 roku. Supermarket posiada oddziały w trzech różnych miastach. Celem analizy jest identyfikacja kluczowych trendów w sprzedaży, preferencji klientów oraz ocena różnic w popularności kategorii produktowych w zależności od lokalizacji.
+# Project information
+The analysis is based on supermarket sales data from a three-month period (January–March) in 2019. The supermarket has branches in three different cities. The goal of this analysis is to identify key sales trends, customer preferences, and evaluate differences in the popularity of product categories depending on location.
 
-#### Pytania na jakie stara się odpowiedzieć ta analiza: 
-- jaki jest rozkład klientów ze względu na płeć oraz miasto
-- jakie czynniki wpływają na poziom zadowolenia klientów
-- które linie produktowe są najbardziej i najmniej popularne w poszczególnych miastach
-- czy istnieje zależność między ceną produktu a ilością, w jakiej jest kupowany
-- które miasta oraz kategorie produktów generują największy zysk
-- w jakich godzinach sklepy odnotowują największy ruch klientów
+#### Questions this analysis aims to answer:
+- What is the distribution of customers by gender and city
+- What factors influence customer satisfaction levels
+- Which product lines are the most and least popular in different cities
+- Is there a relationship between the price of a product and the quantity in which it is purchased
+- Which cities and product categories generate the highest profit
+- During which hours do stores experience the highest customer traffic
 
 ```python
 import pandas as pd
@@ -24,7 +24,7 @@ import matplotlib.pylab as plt
 import seaborn as sns
 ```
 
-# Czyszczenie danych
+# Data cleaning
 
 
 ```python
@@ -386,7 +386,7 @@ df.describe()
 
 
 
-## Wizualizacja danych
+## Data visualization
 
 
 ```python
@@ -594,9 +594,9 @@ grp
 
 
 
-- wykres przedstawia porównanie liczby zakupów dokonanych przez klientów w różnych miastach, z uwzględnieniem podziału na płeć
-- największa dysproporcja w liczbie zakupów między kobietami a mężczyznami występuje w Naypyitaw, gdzie kobiety zakupiły ok. 15 więcej różnych produktów
-- różnice w liczbie zakupionych produktów między płciami są niewielkie. Na 1000 sprzedanych produktów, 501 zostało zakupionych przez kobiety, a 499 przez mężczyzn
+- the chart presents a comparison of the number of purchases made by customers in different cities, categorized by gender
+- the largest discrepancy in the number of purchases between women and men occurs in Naypyitaw, where women purchased approximately 15 more different products
+- the differences in the number of purchased products between genders are small. Out of 1,000 products sold, 501 were purchased by women, and 499 by men
 
 
 ```python
@@ -611,9 +611,9 @@ plt.show()
     
 
 
-- zadowolenie klientów z zakupów (Rating) jest niezależne od pozostałych analizowanych czynników (klienci dokonują oceny na podstawie innych czynników)
-- ilość zakupionego produktu (Quantity) nie ma związku z jego ceną (Unit price)
-- silna korelacja między podatkiem (Tax 5%), kosztem produkcji (cogs), przychodem (Total) i dochodem brutto (gross income) jest zgodna z oczekiwanymi zależnościami finansowymi
+- customer satisfaction with purchases (Rating) is independent of the other analyzed factors (customers base their ratings on different aspects)
+- the quantity of purchased products (Quantity) is not related to their unit price (Unit price)
+- the strong correlation between tax (Tax 5%), cost of goods sold (COGS), revenue (Total), and gross income (Gross income) aligns with expected financial relationships
 
 
 ```python
@@ -702,12 +702,12 @@ grouped
 
 
 
-- wykres prezentuje zróżnicowanie popularności kategorii produktów w zależności od miasta, co wskazuje na różne trendy zakupowe w poszczególnych lokalizacjach
-- największą popularnością cieszą się kategorie Fashion accessories (178 zakupionych produktów), Food and beverages (174) oraz Fashion accessories (170)
-- najmniej popularną linią jest Health and beauty, ze sprzedażą 152 produktów
-- Naypyitaw wyróżnia się wysokim zainteresowaniem produktami z kategorii Food and beverages oraz Fashion accessories, które osiągnęły najwyższy poziom sprzedaży w tym mieście. Natomiast Home and lifestyle oraz Sports and travel są tu znacznie mniej popularne – liczba zakupionych produktów jest o około 20 niższa niż w pozostałych miastach
-- w Yangon najchętniej kupowane są produkty Home and lifestyle, które osiągają tu najwyższy wynik spośród wszystkich miast. Jednocześnie Health and beauty cieszy się w tym mieście najmniejszym zainteresowaniem
-- w Mandalay dominuje kategoria Health and beauty, gdzie sprzedaż przewyższa inne miasta
+- the chart presents the variation in product category popularity across different cities, indicating distinct shopping trends in each location
+- the most popular categories are Fashion accessories (178 purchased products), Food and beverages (174), and Fashion accessories (170)
+- the least popular category is Health and beauty, with a total of 152 products sold
+- Naypyitaw stands out for its high demand for Food and beverages and Fashion accessories, which recorded the highest sales in this city. Meanwhile, Home and lifestyle and Sports and travel are significantly less popular, with around 20 fewer purchases than in other cities
+- in Yangon, Home and lifestyle products are the most frequently purchased, achieving the highest sales among all cities. At the same time, Health and beauty is the least popular category in this location
+- in Mandalay, Health and beauty dominates, with sales exceeding those in other cities
 
 
 ```python
@@ -722,10 +722,9 @@ plt.show()
     
 
 
-- mediany kwot transakcji dla wszystkich metod płatności są zbliżone (ok. 250 USD), przy czym mediana dla kart kredytowych jest nieznacznie niższa
-- zakresy między dolnym a górnym kwartylem są porównywalne dla wszystkich analizowanych metod płatności
-- wykresy pudełkowe wskazują na niewielką liczbę wartości odstających dla każdej z analizowanych metod płatności
-
+- the median transaction amounts for all payment methods are similar (around 250 USD), with the median for credit cards being slightly lower
+- the interquartile ranges (between the lower and upper quartiles) are comparable across all analyzed payment methods
+- the box plots indicate a small number of outliers for each of the analyzed payment methods
 
 ```python
 plt.figure(figsize=(12,5))
@@ -743,8 +742,8 @@ plt.show()
     
 
 
-- występuje brak silnej zależności między ceną jednostkową produktu a ilością zakupioną przez klienta
-- największa liczba sprzedanych produktów (320 sztuk) przypada na najwyższy przedział cenowy [96.9-99.9 USD], co znacząco wyróżnia ten przedział na tle pozostałych. Klienci chętnie wybierali również produkty z przedziałów cenowych 19-22 USD oraz 73-76 USD
+- there is no strong correlation between the unit price of a product and the quantity purchased by a customer
+- the highest number of products sold (320 units) falls within the highest price range [96.9-99.9 USD], making this range stand out significantly compared to others. Customers also frequently chose products in the 19-22 USD and 73-76 USD price ranges
 
 
 ```python
@@ -754,18 +753,18 @@ plt.show()
 # Dashboard
 ![image](https://github.com/user-attachments/assets/6d4f2435-4ec6-4dce-80af-9e82270179fd)
 
-## Najważniejsze informacje
-Dashboard przedstawia przychód oraz koszt sprzedaży każdego dnia miesiąca, jest możliwość filtorowania przez miesiąc oraz miasto. W tabeli jest podsumowanie w zależności od linii produkcyjnych oraz wykres z sumowanymi przychodami w skali godzinowej.
-- całkowity przychód: 322,97 tyś. USD
-- całkowity koszt sprzedaży: 307,59 tyś. USD
-- całkowity zysk brutto: 15,38 tyś. USD
+## Key information
+The dashboard presents revenue and cost of sales for each day of the month, with filtering options for month and city. It includes a summary table by product line and a chart displaying aggregated revenue on an hourly scale.
+- total revenue: $322.97K
+- total cost of sales: $307.59K
+- total gross profit: $15.38K
   
-## Analiza trendu
-- w dniach takich jak 4, 13, 18, 22 każdego miesiąca występują spadki przychodów. Natomiast w dniach 7-9, 15 są one zwiększone. Spadki i wzorsty przychodów występują na zmianę
-- najbardziej dochodowym miastem jest Naypyitaw, gdzie zysk brutto wyniósł 5,27 tyś. USD. Naypyitaw najwięcej zysku ma z kategorii Food and bevarages (ok. 1,1 tyś. USD) oraz Fashion accessories (ok. 1 tyś. USD)
-- w pozostałych miastach przychód brutto wynosi on 5,06 tyś. USD
-- niskie przychody występują w godzinach popołudniowych (15:30-18:30), a największe w wieczornych (19:00-19:30), co wskazuje, że klienci np. wybierają się na większe zakupy po pracy
-- najwyższy dochód brutto był w styczniu (5,54 tyś. USD), natomiast najniższy w lutym (4,63 tyś. USD)
+## Trend analysis
+- on days such as the 4th, 13th, 18th, and 22nd of each month, there are declines in revenue. On the other hand, revenue increases are observed on 7th-9th and 15th. Declines and increases in revenue alternate throughout the month
+- the most profitable city is Naypyitaw, where the gross profit amounted to $5.27K. Naypyitaw's highest earnings come from the Food and Beverages category (about $1.1K) and Fashion Accessories (around $1K)
+- in other cities, the gross profit is $5.06K
+- low revenues are observed in the afternoon hours (3:30 PM - 6:30 PM), while the highest earnings occur in the evening (7:00 PM - 7:30 PM), suggesting that customers tend to do more shopping after work.
+- the highest gross profit was recorded in January ($5.54K), while the lowest was in February ($4.63K)
   
 <img src="https://github.com/user-attachments/assets/48cb7172-157f-4627-9e36-ebc58fe2c6db" width="900">
 
