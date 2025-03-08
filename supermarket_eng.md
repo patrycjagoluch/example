@@ -768,24 +768,24 @@ The dashboard presents revenue and cost of sales for each day of the month, with
   
 <img src="https://github.com/user-attachments/assets/48cb7172-157f-4627-9e36-ebc58fe2c6db" width="900">
 
-- najwyższe przychody odnotowano w soboty (łącznie 56 tys. USD), a następnie we wtorki (51 tys. USD)
-- poniedziałki charakteryzują się najniższymi przychodami (38 tys. USD), co może wynikać z mniejszej liczby klientów po weekendowych zakupach
-- sprzedaż w dni robocze (środa, czwartek, piątek) oraz niedziele utrzymuje się na stabilnym poziomie około 44 tyś. USD
+- the highest revenues were recorded on Saturdays ($56K in total), followed by Tuesdays ($51K)
+- mondays have the lowest revenues ($38K), which could be due to fewer customers after weekend shopping
+- sales on weekdays (Wednesday, Thursday, Friday) and Sundays remain at a stable level of around $44K
 
-## Analiza sprzedaży według linii produkcji
-- różnice między przychodami różnych kategorii są niewielkie, największe są z Food and beverages (56,1 tyś. USD)
-- najniższy dochód brutto ma Health and beauty (2,3 tyś. USD) (wynik niskiej sprzedaży), pozostałe mają w granicach 2,5-2,6 tyś. USD, co sugeruje stabliną sprzedaż
-
-## Rekomendacje
-- #### zwiększenie ilości klientów w tych dniach lub godzinach, gdy jest mniejszy ruch
-  - wprowadzenie promocji, które obowiązują w czasie, gdy sprzedaż jest mniejsza
-  - zbieranie punktów przez klientów za każde zrobione zakupy, których wysoka suma może przynieść nagrody
-- #### zachęcenie do częstszego kupowania z mniej dochodowych kategorii (w szczególności Health and beauty)
-  - rozszerzenie oferty w sklepach - wprowadzenie nowych, popularnych produktów
-  - działania marketingowe w social mediach (prowadzenie kont np. tiktok, instagram, wysyłanie paczek influencerom, którzy mają wysoką oglądalność)
-  - spersonalizowane promocje (wysyłane SMS-em) dla osób, które posiadają konto w sklepie
-  - regularna zmiana aranżacji sklepu oraz ekspozycji plakatów, aby przyciągnąć uwagę klientów
-- #### inwestycje w dochodowe linie produkcyjne w miastach, które osiągają najlepsze wyniki, w celu utrzymania i wzrostu zainteresowania klientów
-  - rozszerzenie asortymentu - jeśli klieci wykazują zainteresowanie daną kategorią (np. Fashion accessories w Naypyitaw), można wprowadzić droższe, bardziej luksusowe produkty
-  - powiększenie magazynów, w celu uniknięcia braków popularnych produktów (oraz zrobienie miejsca na nowe, zgodnie z powyżyszym podpunktem)
-  - lokalne wydarzenia i współprace z influencerami – organizowanie eventów tematycznych, warsztatów w supermarketach oraz zapraszanie influencerów jako ambasadorów marki, aby zwiększyć zainteresowanie klientów
+## Sales analysis by product line
+- the differences between revenues across various categories are minor, with the highest earnings coming from Food and Beverages ($56.1K)
+- the lowest gross profit is recorded in Health and Beauty ($2.3K) due to low sales, while other categories generate around $2.5K-$2.6K, suggesting stable sales across those lines
+  
+## Recommendations
+- #### increase the number of customers during times or days with lower traffic
+  - introduce promotions during times when sales are lower to boost customer activity
+  - implement a loyalty program where customers earn points for every purchase, which can later be exchanged for rewards
+- #### encourage more frequent purchases from less profitable categories (especially Health and Beauty)
+  - expand the product offering by introducing new, popular products to attract more customers
+  - run targeted marketing campaigns on social media platforms like TikTok and Instagram. This could include sending products to influencers with high visibility
+  - offer personalized promotions (sent via SMS) for customers who have an account in the store, making the offers more attractive
+  - regularly update the store layout and display posters to capture the attention of customers
+- #### invest in profitable product lines in cities with the highest performance to maintain and increase customer interest
+  - expand the range of products — for example, if customers are interested in Fashion Accessories in Naypyitaw, consider introducing more expensive and luxurious products in that category
+  - increase warehouse capacity to avoid stockouts of popular items and create space for new products (as mentioned in the previous point)
+  - organize local events and collaborate with influencers. This could include hosting themed events, workshops at supermarkets, or inviting influencers to be brand ambassadors to further engage customers and raise brand awareness
