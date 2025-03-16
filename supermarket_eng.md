@@ -751,7 +751,7 @@ plt.show()
 ```
 
 # Dashboard
-![image](https://github.com/user-attachments/assets/6d4f2435-4ec6-4dce-80af-9e82270179fd)
+![png](dashboard_1.png)
 
 ## Key information
 The dashboard presents revenue and cost of sales for each day of the month, with filtering options for month and city. It includes a summary table by product line and a chart displaying aggregated revenue on an hourly scale.
@@ -766,7 +766,7 @@ The dashboard presents revenue and cost of sales for each day of the month, with
 - low revenues are observed in the afternoon hours (3:30 PM - 6:30 PM), while the highest earnings occur in the evening (7:00 PM - 7:30 PM), suggesting that customers tend to do more shopping after work.
 - the highest gross profit was recorded in January ($5.54K), while the lowest was in February ($4.63K)
   
-<img src="https://github.com/user-attachments/assets/48cb7172-157f-4627-9e36-ebc58fe2c6db" width="900">
+![png](dashboard_2.png)
 
 - the highest revenues were recorded on Saturdays ($56K in total), followed by Tuesdays ($51K)
 - mondays have the lowest revenues ($38K), which could be due to fewer customers after weekend shopping
