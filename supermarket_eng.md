@@ -363,11 +363,9 @@ df.describe()
 </div>
 
 
-## SQL
+# SQL
 ```python
-#!pip install ipython-sql
 cnn = sqlite3.connect('jupyter_sql_supermarket.db')
-
 execute = cnn.cursor()
 df.to_sql('store',con=cnn, if_exists='replace')
 ```
@@ -519,18 +517,14 @@ res.head()
 
 
 
-
+### Monthly sales in each city
 ```python
-# suma z
 res = pd.read_sql("""SELECT strftime('%m', Date) AS Month, ROUND(SUM(Total),2) AS "Monthly Sales", City
 FROM store
 GROUP BY Month, City
-ORDER BY Month """, con=cnn)
+ORDER BY Month, "Monthly Sales" DESC """, con=cnn)
 res
 ```
-
-
-
 
 <div>
 <table border="1" class="dataframe">
@@ -546,66 +540,65 @@ res
     <tr>
       <th>0</th>
       <td>01</td>
-      <td>37176.0585</td>
-      <td>Mandalay</td>
+      <td>40434.68</td>
+      <td>Naypyitaw</td>
     </tr>
     <tr>
       <th>1</th>
       <td>01</td>
-      <td>40434.6810</td>
-      <td>Naypyitaw</td>
+      <td>38681.13</td>
+      <td>Yangon</td>
     </tr>
     <tr>
       <th>2</th>
       <td>01</td>
-      <td>38681.1285</td>
-      <td>Yangon</td>
+      <td>37176.06</td>
+      <td>Mandalay</td>
     </tr>
     <tr>
       <th>3</th>
       <td>02</td>
-      <td>34424.2710</td>
+      <td>34424.27</td>
       <td>Mandalay</td>
     </tr>
     <tr>
       <th>4</th>
       <td>02</td>
-      <td>32934.9825</td>
+      <td>32934.98</td>
       <td>Naypyitaw</td>
     </tr>
     <tr>
       <th>5</th>
       <td>02</td>
-      <td>29860.1205</td>
+      <td>29860.12</td>
       <td>Yangon</td>
     </tr>
     <tr>
       <th>6</th>
       <td>03</td>
-      <td>34597.3425</td>
-      <td>Mandalay</td>
+      <td>37659.12</td>
+      <td>Yangon</td>
     </tr>
     <tr>
       <th>7</th>
       <td>03</td>
-      <td>37199.0430</td>
+      <td>37199.04</td>
       <td>Naypyitaw</td>
     </tr>
     <tr>
       <th>8</th>
       <td>03</td>
-      <td>37659.1215</td>
-      <td>Yangon</td>
+      <td>34597.34</td>
+      <td>Mandalay</td>
     </tr>
   </tbody>
 </table>
 </div>
 
+- the city with the highest monthly sales varied across the three months analyzed. Specifically, Naypyitaw recorded the highest sales in January (40,434.68 USD), Mandalay in February (34,424.27 USD), and Yangon in March (37,659.12 USD). Longer-term data is needed to assess seasonality
 
-
-
+## 
 ```python
-# 
 res = pd.read_sql("""SELECT Gender, City, ROUND(AVG("Total"), 2)AS Average_unit_price, ROUND(SUM(Total),2) AS Total_sales
 FROM store
 GROUP BY Gender,City
@@ -674,12 +667,11 @@ res
 </table>
 </div>
 
-
-
+- female customers in Naypyitaw have the highest total sales (61685.46 USD) and the highest average unit price (346.55 USD)
+- male customers in Naypyitaw have the lowest total sales (48883.24 USD)
+- sales in Mandalay and Yangon are very similar, approximately 53,000 USD for both genders
 
 ```python
-
-# 
 res = pd.read_sql("""SELECT Payment, ROUND(AVG(Total),2) as Avg_Total, ROUND(SUM(Total),2) as Sum_Total
 FROM store
 GROUP BY Payment
@@ -727,7 +719,6 @@ res
 
 
 ```python
-# 
 res = pd.read_sql("""SELECT 
   strftime('%H', Time) AS Hour, 
   ROUND(SUM(Total),2) AS Total_sales, 
@@ -840,7 +831,6 @@ res
 
 
 ```python
-# z jakich branÅ¼ sÄ… najczÄ™Å›ciej kupowane produkty
 res = pd.read_sql("""SELECT "Product line", ROUND(SUM(Quantity),2) as Sum_Quantity
 FROM store
 GROUP BY "Product line" 
