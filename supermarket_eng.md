@@ -2,6 +2,7 @@
 
  - [Project information](#project-information)
  - [Data cleaning](#data-cleaning)
+ - [SQL](#sql)
  - [Data visualization](#data-visualization)
  - [Dashboard](#dashboard)
  - [Recommendations](#recommendations)
@@ -22,6 +23,8 @@ import pandas as pd
 import numpy as np
 import matplotlib.pylab as plt
 import seaborn as sns
+import sqlite3
+
 ```
 
 # Data cleaning
@@ -36,19 +39,7 @@ df.head()
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -264,19 +255,6 @@ df.describe()
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -385,35 +363,37 @@ df.describe()
 </div>
 
 
+## SQL
+```python
+#!pip install ipython-sql
+cnn = sqlite3.connect('jupyter_sql_supermarket.db')
 
-## Data visualization
+execute = cnn.cursor()
+df.to_sql('store',con=cnn, if_exists='replace')
+```
+
+
+
+
+    1000
+
+
 
 
 ```python
-df.head()
+res = pd.read_sql("""select * from store""",con=cnn)
+res.head()
 ```
 
 
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>index</th>
       <th>Branch</th>
       <th>City</th>
       <th>Customer type</th>
@@ -435,6 +415,7 @@ df.head()
   <tbody>
     <tr>
       <th>0</th>
+      <td>0</td>
       <td>A</td>
       <td>Yangon</td>
       <td>Member</td>
@@ -445,7 +426,7 @@ df.head()
       <td>26.1415</td>
       <td>548.9715</td>
       <td>2019-01-05</td>
-      <td>13:08:00</td>
+      <td>13:08:00.000000</td>
       <td>Ewallet</td>
       <td>522.83</td>
       <td>26.1415</td>
@@ -454,6 +435,7 @@ df.head()
     </tr>
     <tr>
       <th>1</th>
+      <td>1</td>
       <td>C</td>
       <td>Naypyitaw</td>
       <td>Normal</td>
@@ -464,7 +446,7 @@ df.head()
       <td>3.8200</td>
       <td>80.2200</td>
       <td>2019-03-08</td>
-      <td>10:29:00</td>
+      <td>10:29:00.000000</td>
       <td>Cash</td>
       <td>76.40</td>
       <td>3.8200</td>
@@ -473,6 +455,7 @@ df.head()
     </tr>
     <tr>
       <th>2</th>
+      <td>2</td>
       <td>A</td>
       <td>Yangon</td>
       <td>Normal</td>
@@ -483,7 +466,7 @@ df.head()
       <td>16.2155</td>
       <td>340.5255</td>
       <td>2019-03-03</td>
-      <td>13:23:00</td>
+      <td>13:23:00.000000</td>
       <td>Credit card</td>
       <td>324.31</td>
       <td>16.2155</td>
@@ -492,6 +475,7 @@ df.head()
     </tr>
     <tr>
       <th>3</th>
+      <td>3</td>
       <td>A</td>
       <td>Yangon</td>
       <td>Member</td>
@@ -502,7 +486,7 @@ df.head()
       <td>23.2880</td>
       <td>489.0480</td>
       <td>2019-01-27</td>
-      <td>20:33:00</td>
+      <td>20:33:00.000000</td>
       <td>Ewallet</td>
       <td>465.76</td>
       <td>23.2880</td>
@@ -511,6 +495,7 @@ df.head()
     </tr>
     <tr>
       <th>4</th>
+      <td>4</td>
       <td>A</td>
       <td>Yangon</td>
       <td>Normal</td>
@@ -521,7 +506,7 @@ df.head()
       <td>30.2085</td>
       <td>634.3785</td>
       <td>2019-02-08</td>
-      <td>10:37:00</td>
+      <td>10:37:00.000000</td>
       <td>Ewallet</td>
       <td>604.17</td>
       <td>30.2085</td>
@@ -536,57 +521,81 @@ df.head()
 
 
 ```python
-sns.countplot(x="City",data=df,hue="Gender",palette=["#CB9DF0","#73EC8B"],edgecolor="black")
-plt.legend(loc="upper left", bbox_to_anchor=(1, 1))
-plt.ylabel("Sales")
-plt.title("Total sales in cities by gender")
-plt.show()
-
-grp=df.groupby("Gender")["Total"].count().reset_index()
-grp
+# suma z
+res = pd.read_sql("""SELECT strftime('%m', Date) AS Month, ROUND(SUM(Total),2) AS "Monthly Sales", City
+FROM store
+GROUP BY Month, City
+ORDER BY Month """, con=cnn)
+res
 ```
-
-
-    
-![png](output_11_0.png)
-    
-
 
 
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>Gender</th>
-      <th>Total</th>
+      <th>Month</th>
+      <th>Monthly Sales</th>
+      <th>City</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>Female</td>
-      <td>501</td>
+      <td>01</td>
+      <td>37176.0585</td>
+      <td>Mandalay</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Male</td>
-      <td>499</td>
+      <td>01</td>
+      <td>40434.6810</td>
+      <td>Naypyitaw</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>01</td>
+      <td>38681.1285</td>
+      <td>Yangon</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>02</td>
+      <td>34424.2710</td>
+      <td>Mandalay</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>02</td>
+      <td>32934.9825</td>
+      <td>Naypyitaw</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>02</td>
+      <td>29860.1205</td>
+      <td>Yangon</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>03</td>
+      <td>34597.3425</td>
+      <td>Mandalay</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>03</td>
+      <td>37199.0430</td>
+      <td>Naypyitaw</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>03</td>
+      <td>37659.1215</td>
+      <td>Yangon</td>
     </tr>
   </tbody>
 </table>
@@ -594,10 +603,301 @@ grp
 
 
 
-- the chart presents a comparison of the number of purchases made by customers in different cities, categorized by gender
-- the largest discrepancy in the number of purchases between women and men occurs in Naypyitaw, where women purchased approximately 15 more different products
-- the differences in the number of purchased products between genders are small. Out of 1,000 products sold, 501 were purchased by women, and 499 by men
 
+```python
+# 
+res = pd.read_sql("""SELECT Gender, City, ROUND(AVG("Total"), 2)AS Average_unit_price, ROUND(SUM(Total),2) AS Total_sales
+FROM store
+GROUP BY Gender,City
+ORDER BY Total_sales desc""", con=cnn)
+res
+```
+
+
+
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Gender</th>
+      <th>City</th>
+      <th>Average_unit_price</th>
+      <th>Total_sales</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Female</td>
+      <td>Naypyitaw</td>
+      <td>346.55</td>
+      <td>61685.46</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Male</td>
+      <td>Mandalay</td>
+      <td>313.35</td>
+      <td>53269.38</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Female</td>
+      <td>Yangon</td>
+      <td>330.86</td>
+      <td>53269.17</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Male</td>
+      <td>Yangon</td>
+      <td>295.71</td>
+      <td>52931.20</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Female</td>
+      <td>Mandalay</td>
+      <td>326.72</td>
+      <td>52928.29</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Male</td>
+      <td>Naypyitaw</td>
+      <td>325.89</td>
+      <td>48883.24</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+
+# 
+res = pd.read_sql("""SELECT Payment, ROUND(AVG(Total),2) as Avg_Total, ROUND(SUM(Total),2) as Sum_Total
+FROM store
+GROUP BY Payment
+ORDER BY Avg_Total DESC """, con=cnn)
+res
+```
+
+
+
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Payment</th>
+      <th>Avg_Total</th>
+      <th>Sum_Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Cash</td>
+      <td>326.18</td>
+      <td>112206.57</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Credit card</td>
+      <td>324.01</td>
+      <td>100767.07</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Ewallet</td>
+      <td>318.82</td>
+      <td>109993.11</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+# 
+res = pd.read_sql("""SELECT 
+  strftime('%H', Time) AS Hour, 
+  ROUND(SUM(Total),2) AS Total_sales, 
+  ROUND(AVG(Total),2) AS Avg_total_sales, 
+  COUNT(*) AS Number_of_transactions
+FROM store
+GROUP BY Hour
+ORDER BY Hour;
+""", con=cnn)
+res
+```
+
+
+
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Hour</th>
+      <th>Total_sales</th>
+      <th>Avg_total_sales</th>
+      <th>Number_of_transactions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>10</td>
+      <td>31421.48</td>
+      <td>311.10</td>
+      <td>101</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>11</td>
+      <td>30377.33</td>
+      <td>337.53</td>
+      <td>90</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>12</td>
+      <td>26065.88</td>
+      <td>292.88</td>
+      <td>89</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>13</td>
+      <td>34723.23</td>
+      <td>337.12</td>
+      <td>103</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>14</td>
+      <td>30828.40</td>
+      <td>371.43</td>
+      <td>83</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>15</td>
+      <td>31179.51</td>
+      <td>305.68</td>
+      <td>102</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>16</td>
+      <td>25226.32</td>
+      <td>327.61</td>
+      <td>77</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>17</td>
+      <td>24445.22</td>
+      <td>330.34</td>
+      <td>74</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>18</td>
+      <td>26030.34</td>
+      <td>279.90</td>
+      <td>93</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>19</td>
+      <td>39699.51</td>
+      <td>351.32</td>
+      <td>113</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>20</td>
+      <td>22969.53</td>
+      <td>306.26</td>
+      <td>75</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+# z jakich branÅ¼ sÄ… najczÄ™Å›ciej kupowane produkty
+res = pd.read_sql("""SELECT "Product line", ROUND(SUM(Quantity),2) as Sum_Quantity
+FROM store
+GROUP BY "Product line" 
+ORDER BY Sum_Quantity DESC""", con=cnn)
+res
+```
+
+
+
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Product line</th>
+      <th>Sum_Quantity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Electronic accessories</td>
+      <td>971.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Food and beverages</td>
+      <td>952.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Sports and travel</td>
+      <td>920.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Home and lifestyle</td>
+      <td>911.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Fashion accessories</td>
+      <td>902.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Health and beauty</td>
+      <td>854.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+## Data visualization
 
 ```python
 cor=df.corr(numeric_only=True)
@@ -644,19 +944,6 @@ grouped
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -709,22 +996,6 @@ grouped
 - in Yangon, Home and lifestyle products are the most frequently purchased, achieving the highest sales among all cities. At the same time, Health and beauty is the least popular category in this location
 - in Mandalay, Health and beauty dominates, with sales exceeding those in other cities
 
-
-```python
-sns.boxplot(x="Payment", y="Total", data=df,hue="Payment",palette="Accent")
-plt.title("Distribution of Total Purchase Amount by Payment Method")
-plt.show()
-```
-
-
-    
-![png](output_17_0.png)
-    
-
-
-- the median transaction amounts for all payment methods are similar (around 250 USD), with the median for credit cards being slightly lower
-- the interquartile ranges (between the lower and upper quartiles) are comparable across all analyzed payment methods
-- the box plots indicate a small number of outliers for each of the analyzed payment methods
 
 ```python
 plt.figure(figsize=(12,5))
