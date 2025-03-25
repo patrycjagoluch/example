@@ -384,139 +384,6 @@ res.head()
 ```
 
 
-
-
-<div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>index</th>
-      <th>Branch</th>
-      <th>City</th>
-      <th>Customer type</th>
-      <th>Gender</th>
-      <th>Product line</th>
-      <th>Unit price</th>
-      <th>Quantity</th>
-      <th>Tax 5%</th>
-      <th>Total</th>
-      <th>Date</th>
-      <th>Time</th>
-      <th>Payment</th>
-      <th>cogs</th>
-      <th>gross income</th>
-      <th>Rating</th>
-      <th>Full_date</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0</td>
-      <td>A</td>
-      <td>Yangon</td>
-      <td>Member</td>
-      <td>Female</td>
-      <td>Health and beauty</td>
-      <td>74.69</td>
-      <td>7</td>
-      <td>26.1415</td>
-      <td>548.9715</td>
-      <td>2019-01-05</td>
-      <td>13:08:00.000000</td>
-      <td>Ewallet</td>
-      <td>522.83</td>
-      <td>26.1415</td>
-      <td>9.1</td>
-      <td>2019-01-05 13:08:00</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1</td>
-      <td>C</td>
-      <td>Naypyitaw</td>
-      <td>Normal</td>
-      <td>Female</td>
-      <td>Electronic accessories</td>
-      <td>15.28</td>
-      <td>5</td>
-      <td>3.8200</td>
-      <td>80.2200</td>
-      <td>2019-03-08</td>
-      <td>10:29:00.000000</td>
-      <td>Cash</td>
-      <td>76.40</td>
-      <td>3.8200</td>
-      <td>9.6</td>
-      <td>2019-03-08 10:29:00</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2</td>
-      <td>A</td>
-      <td>Yangon</td>
-      <td>Normal</td>
-      <td>Male</td>
-      <td>Home and lifestyle</td>
-      <td>46.33</td>
-      <td>7</td>
-      <td>16.2155</td>
-      <td>340.5255</td>
-      <td>2019-03-03</td>
-      <td>13:23:00.000000</td>
-      <td>Credit card</td>
-      <td>324.31</td>
-      <td>16.2155</td>
-      <td>7.4</td>
-      <td>2019-03-03 13:23:00</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>3</td>
-      <td>A</td>
-      <td>Yangon</td>
-      <td>Member</td>
-      <td>Male</td>
-      <td>Health and beauty</td>
-      <td>58.22</td>
-      <td>8</td>
-      <td>23.2880</td>
-      <td>489.0480</td>
-      <td>2019-01-27</td>
-      <td>20:33:00.000000</td>
-      <td>Ewallet</td>
-      <td>465.76</td>
-      <td>23.2880</td>
-      <td>8.4</td>
-      <td>2019-01-27 20:33:00</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>4</td>
-      <td>A</td>
-      <td>Yangon</td>
-      <td>Normal</td>
-      <td>Male</td>
-      <td>Sports and travel</td>
-      <td>86.31</td>
-      <td>7</td>
-      <td>30.2085</td>
-      <td>634.3785</td>
-      <td>2019-02-08</td>
-      <td>10:37:00.000000</td>
-      <td>Ewallet</td>
-      <td>604.17</td>
-      <td>30.2085</td>
-      <td>5.3</td>
-      <td>2019-02-08 10:37:00</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
 ### Monthly sales in each city
 ```python
 res = pd.read_sql("""SELECT strftime('%m', Date) AS Month, ROUND(SUM(Total),2) AS "Monthly Sales", City
@@ -597,7 +464,8 @@ res
 
 - the city with the highest monthly sales varied across the three months analyzed. Specifically, Naypyitaw recorded the highest sales in January (40,434.68 USD), Mandalay in February (34,424.27 USD), and Yangon in March (37,659.12 USD). Longer-term data is needed to assess seasonality
 
-## 
+
+## Average unit price and total sales by gender and city
 ```python
 res = pd.read_sql("""SELECT Gender, City, ROUND(AVG("Total"), 2)AS Average_unit_price, ROUND(SUM(Total),2) AS Total_sales
 FROM store
@@ -671,6 +539,8 @@ res
 - male customers in Naypyitaw have the lowest total sales (48883.24 USD)
 - sales in Mandalay and Yangon are very similar, approximately 53,000 USD for both genders
 
+
+### Sales by payment method 
 ```python
 res = pd.read_sql("""SELECT Payment, ROUND(AVG(Total),2) as Avg_Total, ROUND(SUM(Total),2) as Sum_Total
 FROM store
@@ -717,7 +587,7 @@ res
 
 
 
-
+### Hourly sales performance
 ```python
 res = pd.read_sql("""SELECT 
   strftime('%H', Time) AS Hour, 
@@ -829,7 +699,7 @@ res
 
 
 
-
+### Total quantity sold by product line
 ```python
 res = pd.read_sql("""SELECT "Product line", ROUND(SUM(Quantity),2) as Sum_Quantity
 FROM store
@@ -1006,10 +876,6 @@ plt.show()
 - there is no strong correlation between the unit price of a product and the quantity purchased by a customer
 - the highest number of products sold (320 units) falls within the highest price range [96.9-99.9 USD], making this range stand out significantly compared to others. Customers also frequently chose products in the 19-22 USD and 73-76 USD price ranges
 
-
-```python
-
-```
 
 # Dashboard
 ![png](dashboard_1.png)
