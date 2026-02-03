@@ -1,5 +1,5 @@
 ## Power BI:
-[Dashboards](power_bi_sales.png)
+[Dashboards](dashboards)
 
 ## Sales analysis:
 
