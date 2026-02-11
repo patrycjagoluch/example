@@ -1,7 +1,7 @@
 ## Dashboards:
-[Power BI](dashboards)
+[Power BI](dashboards.md)
 
-[Excel](excel)
+[Excel](excel.md)
 
 ## Sales analysis:
 
