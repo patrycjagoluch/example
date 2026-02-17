@@ -5,7 +5,7 @@
 
 ## SQL analysis:
 
-[SQL](sql.docx)
+[SQL](sql.pdf)
 
 ## Sales analysis:
 
