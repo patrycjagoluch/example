@@ -3,6 +3,10 @@
 
 [Excel](excel.md)
 
+## SQL analysis:
+
+[SQL](sql.docx)
+
 ## Sales analysis:
 
 [English version](supermarket_eng.md)
