@@ -9,7 +9,6 @@
 
 ## Sales analysis:
 
-[English version](supermarket_eng.md)
+[ML Stack Overflow Survey Data - Salary Prediction](StackOverflow.ipynb)
 
-[Polish version](supermarket.md)
 
