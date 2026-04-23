@@ -7,8 +7,8 @@
 
 [SQL](sql.pdf)
 
-## Sales analysis:
+## Machine Learning:
 
-[ML Stack Overflow Survey Data - Salary Prediction](StackOverflow.ipynb)
+[Stack Overflow Survey Data - Salary Prediction](StackOverflow.ipynb)
 
 
