@@ -9,6 +9,6 @@
 
 ## Machine Learning:
 
-[Stack Overflow Survey Data - Salary Prediction](StackOverflow.ipynb)
+[Stack Overflow Salary Prediction](StackOverflow.ipynb)
 
 
