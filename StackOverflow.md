@@ -8,6 +8,14 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score,mean_absolute_error, mean_squared_error
 ```
 
+- [Introduction](#introduction)
+- [Data Cleaning](#data-cleaning)
+- [Feature Engineering](#feature-engineering)
+- [EDA](#eda)
+- [Modeling](#modeling)
+- [Evaluation](#evaluation)
+- [Conclusions](#conclusions)
+
 # Introduction
 
 
