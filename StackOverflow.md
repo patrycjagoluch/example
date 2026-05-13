@@ -2532,19 +2532,6 @@ df_coef.sort_values(by='Coef', ascending=False).head(10)
 
   <div id="df-583e5790-2470-4eef-ae30-23b9b22357a0" class="colab-df-container">
     <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -3041,19 +3028,6 @@ results.sort_values(by='Model')
 
   <div id="df-5eced10a-da0d-4b5a-a9a3-3052a60e96d6" class="colab-df-container">
     <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
